@@ -1,9 +1,16 @@
 section {
   background: white;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 0.5cm;
+  margin: 0 auto 0.5cm;
   box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  flex: 1 0 auto;
+
+  font-family: Verdana;
+  color: wheat;
+  font-size: 1.5em;
 }
 section[size="A4"] {
   width: 21cm;
@@ -34,4 +41,53 @@ section[size="A5"][layout="landscape"] {
     margin: 0;
     box-shadow: none;
   }
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+div.left {
+  width: 3cm;
+}
+
+div.right {
+  width: 2cm;
+}
+
+div.header,
+div.footer {
+  display: flex;
+  height: 3cm;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+}
+
+div.header > div,
+div.footer > div {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+div.paragraph {
+  display: flex;
+  height: auto;
+}
+
+div.page {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+  flex-wrap: nowrap;
+}
+
+div.stretched {
+  flex: 1 1 auto;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+div {
+  border: aqua 1px solid;
 }

@@ -1,0 +1,77 @@
+
+{
+  bubbles: true,
+  detail: {
+    [id: '<id>',] // for UPDATE, DELETE actions
+    action: 'create|update|delete',
+    component: <NAME>Component,
+    [self: this,]
+    [zIndex: 1000,]
+    position: {
+      width: '<X>px|%',
+      height: '<X>px|%',
+      top: 'center' | '<X>px|%[, <Y>px]',
+      left: 'center' | '<X>px|%[, <Y>px]'
+    }
+  }
+}
+
+---
+
+  currentId: string;
+  overlayHandlerCallback(overlayDetailRef): void {
+    console.log(overlayDetailRef);
+    this.currentId = overlayDetailRef.id;
+    console.log('first id: ' + this.currentId);
+  }
+
+  emitEvent(event) {
+    event.target.dispatchEvent(new CustomEvent('overlayEvent',
+      {
+        bubbles: true,
+        detail: {
+          action: 'create',
+          component: ImageLayoutOverlayComponent,
+          self: this,
+          zIndex: 1000,
+          position: {
+            width: '150%',
+            height: '150%',
+            top: 'center',
+            left: 'center'
+          }
+        }
+      }));
+  }
+
+  emitEvent2(event, id) {
+    console.log('emitted id: ' + id);
+    event.target.dispatchEvent(new CustomEvent('overlayEvent',
+      {
+        bubbles: true,
+        detail: {
+          id: id,
+          subject: '/test/message/X',
+          action: 'update',
+          component: ImageLayoutOverlayComponent,
+          classes: ['test-component-backdrop'],
+          self: this,
+          position: { width: '50%', top: '20px', right: 0 }
+        }
+      }));
+  }
+
+  emitEvent3(event) {
+    event.target.dispatchEvent(new CustomEvent('overlayEvent',
+      {
+        bubbles: true,
+        detail: {
+          window: true,
+          zIndex: 2000,
+          action: 'create',
+          component: ImageLayoutOverlayComponent,
+          classes: ['test-component-backdrop'],
+          self: this,
+          position: { width: '100%', height: '100%', left: 0, top: 0 }
+        }
+      }));
